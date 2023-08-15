@@ -1,26 +1,25 @@
-<template name="pagesHome">
+<template name="pagesLogin">
   <div class="container">
-    <p class="pagesHomeHeader">Sign In Page</p>
-    <form id="publicPagesHomeCreateForm">
+    <p class="pagesHomeHeader">Login Page</p>
+    <form id="publicPagesLoginCreateForm">
       <div class="pagesHomeInputs">
         <input
           type="mail"
           placeholder="E-mail"
           class="pagesHomeInput"
-          id="publicPagesHomeCreateInput"
-          name="createMail"
+          id="publicPagesLoginCreateInput"
+          name="loginMail"
         />
         <input
           type="password"
           placeholder="Password"
           class="pagesHomeInput"
-          id="publicPagesHomeCreatePassword"
-          name="createPassword"
+          id="publicPagesLoginCreatePassword"
+          name="loginPassword"
         />
       </div>
       <div class="pagesHomeLogin">
-        <button type="submit">Sign In</button>
-        <a href="{{pathFor 'login'}}" class="mt-2">Already Have ?</a>
+        <button type="submit">Login</button>
       </div>
     </form>
   </div>

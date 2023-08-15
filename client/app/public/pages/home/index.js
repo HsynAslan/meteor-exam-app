@@ -1,4 +1,5 @@
 import { Meteor } from "meteor/meteor";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 Template.pagesHome.helpers({
   create: function () {
     const self = this;
@@ -36,7 +37,7 @@ Template.pagesHome.events({
         // FlowRouter.go('/signin') // hatalıysa
       } else {
         console.log("user created : ", result);
-        FlowRouter.go("/home");
+        FlowRouter.go("/quiz");
         // Meteor.call('user_insert', obj,  function (error, result) {
         //   if (error) {
         //     console.log("error : ", error);
