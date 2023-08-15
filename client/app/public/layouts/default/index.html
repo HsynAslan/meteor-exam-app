@@ -1,0 +1,7 @@
+<template name="publicLayoutDefault">
+  <div class="publicLayoutDefault d-flex flex-column min-vh-100">
+    {{> componentNavbar}}
+    <div class="flex-fill px-0">{{> Template.dynamic template=page}}</div>
+    {{> componentFooter}}
+  </div>
+</template>
