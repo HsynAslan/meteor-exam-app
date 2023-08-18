@@ -1,7 +1,12 @@
 <template name="componentNavbar">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{pathFor 'public.home'}}">Sign In</a>
+      <a
+        class="navbar-brand"
+        href="{{pathFor 'public.home'}}"
+        id="unloggedSignIn"
+        >Sign In</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -13,7 +18,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse navbar-flex" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a
@@ -27,6 +32,8 @@
             <a
               class="nav-link active"
               aria-current="page"
+              id="loggedQuiz"
+              style="display: none"
               href="{{pathFor 'quiz'}}"
               >Quiz</a
             >
@@ -35,6 +42,8 @@
           <li class="nav-item">
             <a
               class="nav-link active"
+              id="loggedAdd"
+              style="display: none"
               aria-current="page"
               href="{{pathFor 'add'}}"
               >Add</a
@@ -44,11 +53,22 @@
             <a
               class="nav-link active"
               aria-current="page"
+              style="display: none"
+              id="loggedResults"
               href="{{pathFor 'res'}}"
               >Results</a
             >
           </li>
         </ul>
+        <div
+          class="profile displayFlex me-4"
+          id="loggedProfile"
+          style="display: none"
+          onclick="location.href='{{pathFor 'pro'}}';"
+        >
+          <i class="fa-solid fa-user"></i>
+          <a class="nav-link active" aria-current="page">Profile</a>
+        </div>
       </div>
     </div>
   </nav>

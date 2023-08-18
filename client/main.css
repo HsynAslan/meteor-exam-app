@@ -83,3 +83,63 @@ body {
   justify-content: center;
   align-items: flex-end;
 }
+.navbar-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.profile {
+  width: 12vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1vh;
+  border-radius: 5px;
+  background-color: grey;
+  cursor: pointer;
+}
+.profileEdit {
+  width: 30%;
+  background-color: darkturquoise;
+  margin-top: -10vh;
+  padding: 5vh;
+}
+.profileEdit p {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.seeQuitProfile {
+  display: flex;
+  justify-content: space-between;
+}
+.profileButton {
+  border: 0px;
+  width: 10vh;
+  height: 5vh;
+  margin-top: 2vh;
+  border-radius: 5px;
+}
+.displayFlex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.ResetPassDiv {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.ResetPassDiv input {
+  margin-bottom: 2vh;
+}
+#resetPassButton {
+  background-color: darkturquoise;
+  text-decoration: underline;
+  border: 0px;
+}
+
+#changePassButtonDiv {
+  display: flex;
+  justify-content: center;
+}

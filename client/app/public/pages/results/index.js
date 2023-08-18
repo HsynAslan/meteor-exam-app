@@ -13,16 +13,3 @@ Template.pagesResult.helpers({
     return results; // Sadece koleksiyon verilerini döndür
   },
 });
-
-Template.pagesResult.events({
-  "click #logoutButton": function (event, template) {
-    Meteor.logout(function (error) {
-      if (error) {
-        console.log("Logout error:", error);
-      } else {
-        console.log("User logged out");
-        FlowRouter.go("public.login");
-      }
-    });
-  },
-});

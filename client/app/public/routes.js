@@ -18,6 +18,18 @@ authenticatedRoutes.route("/quiz", {
     this.render("publicLayoutDefault", { page: "pagesQuiz" });
   },
 });
+authenticatedRoutes.route("/resetPass", {
+  name: "public.resetPass",
+  action: function (params, queryParams) {
+    this.render("publicLayoutDefault", { page: "PagesResetPass" });
+  },
+});
+authenticatedRoutes.route("/pro", {
+  name: "public.pro",
+  action: function (params, queryParams) {
+    this.render("publicLayoutDefault", { page: "pagesProfile" });
+  },
+});
 authenticatedRoutes.route("/res", {
   name: "public.res",
   action: function (params, queryParams) {
