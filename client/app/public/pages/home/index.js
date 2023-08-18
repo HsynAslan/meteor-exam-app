@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 Template.pagesHome.helpers({
   create: function () {
     const self = this;

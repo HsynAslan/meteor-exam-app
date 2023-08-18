@@ -1,6 +1,50 @@
 <template name="pagesQuiz">
-  <h2>quiz sayfasına hoşgeldin</h2>
-  <form name="publicPageQuizQuit">
-    <button type="submit">Log Out</button>
+  <form name="questionForm">
+    <div class="questionDiv mt-2 ms-2">
+      <div class="questionDivQuesiton">
+        <p id="questionNumber" class="me-4 ms-2">1</p>
+        <p id="question">{{ question.question }}</p>
+      </div>
+      <div class="options ms-3">
+        <div class="question">
+          <p>Soru</p>
+        </div>
+        <div class="options">
+          <div id="optionA" class="flex">
+            <input type="radio" name="option" id="idA" />
+            <p>A şıkkı</p>
+          </div>
+          <div id="optionB" class="flex">
+            <input type="radio" name="option" id="idB" />
+            <p>B şıkkı</p>
+          </div>
+          <div id="optionC" class="flex">
+            <input type="radio" name="option" id="idC" />
+            <p>C şıkkı</p>
+          </div>
+          <div id="optionD" class="flex">
+            <input type="radio" name="option" id="idD" />
+            <p>D şıkkı</p>
+          </div>
+          <div id="optionE" class="flex">
+            <input type="radio" name="option" id="idE" />
+            <p>E şıkkı</p>
+          </div>
+        </div>
+        <!-- {{#each question.choices}}
+        <label>
+          <input type="radio" name="option" value="{{@index}}" />
+          {{this}}
+        </label>
+        <br />
+        {{/each}}
+        <br /> -->
+        <div class="nextQuesiton">
+          <button type="submit" class="mb-4 me-4" id="nextQuesitonButton">
+            Next Question
+          </button>
+        </div>
+      </div>
+    </div>
   </form>
 </template>

@@ -22,3 +22,40 @@ Meteor.methods({
     return user._id;
   },
 });
+
+// Sunucu tarafında (server/main.js gibi bir dosyada)
+Meteor.methods({
+  "questions.insert": function (question, choices, answer) {
+    if (!this.userId) {
+      throw new Meteor.Error(
+        "not-authorized",
+        "Oturum açmış kullanıcı gerekli"
+      );
+    }
+
+    Que.insert({
+      question: question,
+      choices: choices,
+      answer: answer,
+      createdAt: new Date(),
+      createdBy: this.userId,
+    });
+  },
+});
+Meteor.methods({
+  "result.insert": function (scor, userID) {
+    if (!this.userId) {
+      throw new Meteor.Error(
+        "not-authorized",
+        "Oturum açmış kullanıcı gerekli"
+      );
+    }
+
+    Res.insert({
+      scor: scor,
+      userID: userID,
+      createdAt: new Date(),
+      createdBy: this.userId,
+    });
+  },
+});

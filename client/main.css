@@ -8,6 +8,7 @@ body {
   font-size: xx-large;
   font-weight: 700;
   border-bottom: 1px solid grey;
+  color: navy;
 }
 .pagesHomeInputs {
   margin-top: 10vh;
@@ -19,6 +20,7 @@ body {
 .pagesHomeInput {
   width: 22%;
   margin-bottom: 2vh;
+  width: 50vh;
 }
 .pagesHomeInput:focus {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px 0px,
@@ -30,4 +32,54 @@ body {
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
+}
+.publicLayoutsDefault {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: stretch;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.questionDiv {
+  background-color: aliceblue;
+  width: 70vh;
+  height: 100%;
+}
+.questionDivQuesiton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.options input {
+  margin-right: 3vh;
+  margin-bottom: 3vh;
+}
+.nextQuesiton {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex {
+  display: flex;
+}
+.pagesHomeFormInputs {
+  height: 100%;
+}
+.publicPagesResults {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.publicPagesResults > div {
+  width: 10vh;
+  height: 10vh;
+  background-color: aliceblue;
+  margin: 3vh;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }

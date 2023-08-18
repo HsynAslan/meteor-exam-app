@@ -18,6 +18,18 @@ authenticatedRoutes.route("/quiz", {
     this.render("publicLayoutDefault", { page: "pagesQuiz" });
   },
 });
+authenticatedRoutes.route("/res", {
+  name: "public.res",
+  action: function (params, queryParams) {
+    this.render("publicLayoutDefault", { page: "pagesResult" });
+  },
+});
+authenticatedRoutes.route("/add", {
+  name: "public.add",
+  action: function (params, queryParams) {
+    this.render("publicLayoutDefault", { page: "pagesAdd" });
+  },
+});
 
 FlowRouter.route("/", {
   name: "public.home",

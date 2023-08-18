@@ -1,0 +1,61 @@
+<template name="pagesAdd">
+  <form id="publicPagesAddCreateQue" class="pagesHomeFormInputs">
+    <div class="pagesHomeInputs">
+      <input
+        type="text"
+        placeholder="Question ?"
+        class="pagesHomeInput"
+        id="publicPagesAddCreateQuestion"
+        name="addQue"
+      />
+      <input
+        type="text"
+        placeholder="Option A"
+        class="pagesHomeInput"
+        id="choices0"
+        name="addQueOptionA"
+      />
+      <input
+        type="text"
+        placeholder="Option B"
+        class="pagesHomeInput"
+        id="choices1"
+        name="addQueOptionB"
+      />
+      <input
+        type="text"
+        placeholder="Option C"
+        class="pagesHomeInput"
+        id="choices2"
+        name="addQueOptionC"
+      />
+      <input
+        type="text"
+        placeholder="Option D"
+        class="pagesHomeInput"
+        id="choices3"
+        name="addQueOptionD"
+      />
+      <input
+        type="text"
+        placeholder="Option E"
+        class="pagesHomeInput"
+        id="choices4"
+        name="addQueOptionE"
+      />
+      <label for="cevap">Cevap Seçin:</label>
+      <select id="cevap" name="addQueAnswer" required>
+        <option value="" disabled selected>Lütfen bir seçenek seçin</option>
+        <option value="a">Seçenek A</option>
+        <option value="b">Seçenek B</option>
+        <option value="c">Seçenek C</option>
+        <option value="d">Seçenek D</option>
+        <option value="e">Seçenek E</option>
+      </select>
+      <br /><br />
+    </div>
+    <div class="pagesHomeLogin">
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</template>
