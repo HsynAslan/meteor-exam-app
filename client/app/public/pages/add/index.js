@@ -19,7 +19,7 @@ Template.pagesAdd.events({
   "submit form": function (event, template) {
     event.preventDefault();
     console.log("Soru gönderme tuşuna bastınız");
-
+    console.log("Soru gönderme tuşuna bastınız");
     const Question = event.target.addQue.value;
 
     const OptionA = event.target.addQueOptionA.value;
