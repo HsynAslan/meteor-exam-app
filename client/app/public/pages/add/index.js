@@ -19,8 +19,9 @@ Template.pagesAdd.events({
   "submit form": function (event, template) {
     event.preventDefault();
     console.log("Soru gönderme tuşuna bastınız");
-
+    console.log("Soru gönderme tuşuna bastınız");
     const Question = event.target.addQue.value;
+    const QuestionHeader = event.target.addQueHeader.value;
 
     const OptionA = event.target.addQueOptionA.value;
     const OptionB = event.target.addQueOptionB.value;
@@ -35,6 +36,7 @@ Template.pagesAdd.events({
       Question,
       [OptionA, OptionB, OptionC, OptionD, OptionE],
       answer,
+      QuestionHeader,
       function (error) {
         if (error) {
           console.log("Soru eklenirken bir hata oluştu:", error.reason);

@@ -1,5 +1,6 @@
 <template name="pagesQuiz">
   <form name="questionForm">
+    {{#with headerData}}
     <div class="questionDiv mt-2 ms-2">
       <div class="questionDivQuesiton">
         <p id="questionNumber" class="me-4 ms-2">1</p>
@@ -46,5 +47,6 @@
         </div>
       </div>
     </div>
+    {{/with}}
   </form>
 </template>

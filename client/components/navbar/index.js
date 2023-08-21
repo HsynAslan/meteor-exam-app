@@ -26,6 +26,13 @@ Template.componentNavbar.onRendered(function () {
         // console.log("user lastname: ", user.profile.lastName);
         //   console.log("user password: ", user.profile.Accounts.setPassword(userId, newPassword););
       }
+      const position = user.profile && user.profile.position;
+      if (position !== "teacher") {
+        // öğretmen değilse
+        loggedInAdd.style.display = "none";
+      } else {
+        loggedInAdd.style.display = "flex";
+      }
     }
   });
 });

@@ -1,6 +1,15 @@
 <template name="pagesAdd">
   <form id="publicPagesAddCreateQue" class="pagesHomeFormInputs">
     <div class="pagesHomeInputs">
+      <label for="cevap">Write Quiz Header:</label>
+      <input
+        type="text"
+        placeholder="2023 Math Quiz !"
+        class="pagesHomeInput"
+        id="publicPagesAddCreateQuestionHeader"
+        name="addQueHeader"
+      />
+      <br /><br />
       <input
         type="text"
         placeholder="Question ?"
@@ -43,14 +52,14 @@
         id="choices4"
         name="addQueOptionE"
       />
-      <label for="cevap">Cevap Seçin:</label>
+      <label for="cevap">Select Option</label>
       <select id="cevap" name="addQueAnswer" required>
-        <option value="" disabled selected>Lütfen bir seçenek seçin</option>
-        <option value="a">Seçenek A</option>
-        <option value="b">Seçenek B</option>
-        <option value="c">Seçenek C</option>
-        <option value="d">Seçenek D</option>
-        <option value="e">Seçenek E</option>
+        <option value="" disabled selected>Please Select Correct Option</option>
+        <option value="a">Option A</option>
+        <option value="b">Option B</option>
+        <option value="c">Option C</option>
+        <option value="d">Option D</option>
+        <option value="e">Option E</option>
       </select>
       <br /><br />
     </div>

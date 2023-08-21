@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 
-Template.pagesHome.helpers({
+Template.pagesHomeTeacher.helpers({
   create: function () {
     const self = this;
   },
@@ -18,7 +18,7 @@ Template.pagesHome.helpers({
   },
 });
 
-Template.pagesHome.events({
+Template.pagesHomeTeacher.events({
   "submit form": function (event, template) {
     console.log("Buttona bastınız");
     event.preventDefault();
@@ -36,7 +36,7 @@ Template.pagesHome.events({
         profile: {
           firstName: nameU,
           lastName: surnameU,
-          position: "student",
+          position: "teacher",
         },
       };
 
@@ -45,7 +45,7 @@ Template.pagesHome.events({
           console.log("error : ", error);
         } else {
           console.log("user created : ", result);
-          FlowRouter.go("/quizHeader");
+          FlowRouter.go("/quiz");
         }
       });
     } else {

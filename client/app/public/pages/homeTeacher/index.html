@@ -1,7 +1,7 @@
-<template name="pagesHome">
+<template name="pagesHomeTeacher">
   <div class="container displayFlex">
     <div>
-      <p class="pagesHomeHeader">Sign In Student</p>
+      <p class="pagesHomeHeader">Sign In Teacher</p>
       <form id="publicPagesHomeCreateForm">
         <div class="pagesHomeInputs">
           <input
@@ -40,12 +40,10 @@
           />
         </div>
         <div class="pagesHomeLogin">
-          <button type="submit" id="signInStudent">Sign In</button>
+          <button type="submit" id="signInTeaher">Sign In</button>
           <div class="publicPagesHomeAreYou">
             <a href="{{pathFor 'login'}}" class="mt-2">Already Have ?</a>
-            <a href="{{pathFor 'loginTeacher'}}" class="mt-2"
-              >Are you Teacher ?</a
-            >
+            <a href="{{pathFor "public.home"}}" class="mt-2">Are you Student ?</a>
           </div>
         </div>
       </form>

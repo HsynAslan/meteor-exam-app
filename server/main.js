@@ -25,7 +25,7 @@ Meteor.methods({
 
 // Sunucu tarafında (server/main.js gibi bir dosyada)
 Meteor.methods({
-  "questions.insert": function (question, choices, answer) {
+  "questions.insert": function (question, choices, answer, header) {
     if (!this.userId) {
       throw new Meteor.Error(
         "not-authorized",
@@ -37,13 +37,14 @@ Meteor.methods({
       question: question,
       choices: choices,
       answer: answer,
+      header: header,
       createdAt: new Date(),
       createdBy: this.userId,
     });
   },
 });
 Meteor.methods({
-  "result.insert": function (scor, userID) {
+  "result.insert": function (scor, userID, catagory) {
     if (!this.userId) {
       throw new Meteor.Error(
         "not-authorized",
@@ -54,6 +55,7 @@ Meteor.methods({
     Res.insert({
       scor: scor,
       userID: userID,
+      catagory: catagory,
       createdAt: new Date(),
       createdBy: this.userId,
     });

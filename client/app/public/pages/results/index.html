@@ -1,10 +1,13 @@
 <template name="pagesResult">
   <div class="publicPagesResults">
     {{#each result}}
-    <div class="">{{this.scor}}</div>
+    <div class="result-item">
+      <div class="name">{{this.firstName}} {{this.lastName}}</div>
+      <div class="category">Category: {{this.catagory}}</div>
+      <div class="scor">Score: {{this.scor}}</div>
+      <div class="time">Time: {{formatTime this.createdAt}}</div>
+    </div>
     <br />
-
     {{/each}}
   </div>
-  <button id="logoutButton">Logout</button>
 </template>

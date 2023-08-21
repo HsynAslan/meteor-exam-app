@@ -1,0 +1,10 @@
+<template name="pagesQuizHeader">
+  <div class="publicPagesQueHeader">
+    {{#each distinctHeaders}}
+    <div class="questionBox">
+      <a href="{{pathFor 'quizPage' header=this}}">{{this}}</a>
+    </div>
+    <br />
+    {{/each}}
+  </div>
+</template>

@@ -37,7 +37,7 @@ Template.pagesLogin.events({
       if (redirect) {
         FlowRouter.go(redirect);
       } else {
-        FlowRouter.go("public.quiz");
+        FlowRouter.go("public.quizHeader");
       }
     });
   },
