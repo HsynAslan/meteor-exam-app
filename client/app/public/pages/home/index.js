@@ -2,6 +2,7 @@ import { event } from "jquery";
 import { Meteor } from "meteor/meteor";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 Template.pagesHome.helpers({
   create: function () {
@@ -20,9 +21,8 @@ Template.pagesHome.helpers({
 
 Template.pagesHome.events({
   "submit form": function (event, template) {
-    console.log("Buttona bastınız");
     event.preventDefault();
-
+    Loading.dots();
     const emailAddress = event.target.createMail.value;
     const password = event.target.createPassword.value;
     const nameU = event.target.createName.value;
@@ -41,15 +41,16 @@ Template.pagesHome.events({
       };
 
       Accounts.createUser(obj, function (error, result) {
+        Loading.remove();
         if (error) {
-          console.log("error : ", error);
+          Notify.failure("Invalid Login İnformation");
         } else {
-          console.log("user created : ", result);
           FlowRouter.go("/quizHeader");
+          Notify.success("User Created");
         }
       });
     } else {
-      console.log("Passwords do not match.");
+      Notify.failure("Passwords do not match.");
     }
   },
 });

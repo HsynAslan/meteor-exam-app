@@ -1,15 +1,15 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 Template.pagesProfile.helpers({});
 let index = 0;
 Template.pagesProfile.events({
   "click #seeProfile": function (event, template) {
     const user = Meteor.user();
     if (user) {
-      console.log("User _id:", user._id); // Kullanıcının _id değerini konsola yazdırın
-      console.log("user mail: ", user.emails[0].address); // e posta veriyor
-      console.log("user name: ", user.profile.firstName);
-      console.log("user lastname: ", user.profile.lastName);
-      //   console.log("user password: ", user.profile.Accounts.setPassword(userId, newPassword););
+      //
     }
 
     if (index % 2 == 0) {
@@ -24,16 +24,20 @@ Template.pagesProfile.events({
     index++;
   },
   "click #resetPassButton": function (event, template) {
+    Loading.dots();
     FlowRouter.go("resetPass");
+    Loading.remove();
   },
   "click #logoutButton": function (event, template) {
+    Loading.dots();
     Meteor.logout(function (error) {
       if (error) {
-        console.log("Logout error:", error);
+        Notify.success("Logout unsuccess");
       } else {
-        console.log("User logged out");
         FlowRouter.go("public.login");
+        Notify.success("Logout Success");
       }
     });
+    Loading.remove();
   },
 });

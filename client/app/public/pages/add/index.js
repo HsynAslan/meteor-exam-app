@@ -1,5 +1,7 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 Template.pagesAdd.helpers({
   create: function () {
     const self = this;
@@ -18,8 +20,8 @@ Template.pagesAdd.helpers({
 Template.pagesAdd.events({
   "submit form": function (event, template) {
     event.preventDefault();
-    console.log("Soru gönderme tuşuna bastınız");
-    console.log("Soru gönderme tuşuna bastınız");
+    Loading.dots();
+
     const Question = event.target.addQue.value;
     const QuestionHeader = event.target.addQueHeader.value;
 
@@ -39,13 +41,14 @@ Template.pagesAdd.events({
       QuestionHeader,
       function (error) {
         if (error) {
-          console.log("Soru eklenirken bir hata oluştu:", error.reason);
+          Notify.failure("An error occurred while adding the question:");
         } else {
-          console.log("Soru başarıyla eklendi");
+          Notify.success("Question Added Succesfully");
           // Soru eklendikten sonra yapılacak işlemleri buraya ekleyebilirsiniz
         }
       }
     );
+    Loading.remove();
     // Input alanlarını temizle
     event.target.addQue.value = "";
     event.target.addQueOptionA.value = "";

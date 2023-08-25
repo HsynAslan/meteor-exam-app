@@ -1,12 +1,10 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 let scor = 0;
 let questionIndex = 0;
 
-Template.componentNavbar.onRendered(function () {
-  console.log("sa,,,,");
-  console.log("======>>>" + FlowRouter.getParam("header"));
-});
+Template.componentNavbar.onRendered(function () {});
 
 Template.pagesQuiz.helpers({
   headerData() {
@@ -20,14 +18,12 @@ Template.pagesQuiz.helpers({
     };
   },
   question() {
-    console.log("======>>>" + FlowRouter.getParam("header"));
+    Loading.dots();
 
     const headerHData = Que.find({
       header: FlowRouter.getParam("header"),
     }).fetch();
     // questions[questionIndex].question
-
-    console.log("ilk soru bao: " + headerHData[0].question);
 
     $(".question p").text(headerHData[0].question);
 
@@ -36,13 +32,14 @@ Template.pagesQuiz.helpers({
     $("#optionC p").text(headerHData[0].choices[2]);
     $("#optionD p").text(headerHData[0].choices[3]);
     $("#optionE p").text(headerHData[0].choices[4]);
-
+    Loading.remove();
     // return questions[questionIndex]; // Soruyu göster
   },
 });
 
 Template.pagesQuiz.events({
   "submit form[name=questionForm]": function (event, template) {
+    Loading.dots();
     event.preventDefault();
 
     const selectedChoice = event.target.option.value;
@@ -50,9 +47,9 @@ Template.pagesQuiz.events({
     const choices = ["a", "b", "c", "d", "e"];
     const selectedChoiceIndex = parseInt(selectedChoice);
     // ankara yerine 0 dönmelisin
-    // console.log("selectedChoice: " + selectedChoice);
+    //
     const selectedChoiceLetter = choices[selectedChoiceIndex];
-    // console.log("selectedChoiceIndex: " + selectedChoiceIndex);
+    //
     const question = Que.find({
       header: FlowRouter.getParam("header"),
     }).fetch()[questionIndex];
@@ -68,7 +65,7 @@ Template.pagesQuiz.events({
 
     let selectedAnswer = "";
     if (boolA == true) {
-      // console.log("a işaretlediniz");
+      //
       selectedAnswer = "a";
       document.getElementById("idA").checked = false;
     } else if (boolB == true) {
@@ -81,18 +78,13 @@ Template.pagesQuiz.events({
       selectedAnswer = "e";
     }
 
-    console.log("seçtiğiniz cevap: " + selectedAnswer);
-    console.log("doğru cevap: " + correctAnswer);
     if (selectedAnswer === correctAnswer) {
-      console.log("Doğru cevap!");
       scor +=
         100 /
         Que.find({
           header: FlowRouter.getParam("header"),
         }).count();
-      console.log("new scor: " + scor);
     } else {
-      console.log("Yanlış cevap!");
     }
 
     questionIndex++;
@@ -101,32 +93,34 @@ Template.pagesQuiz.events({
     document.getElementById("idC").checked = false;
     document.getElementById("idD").checked = false;
     document.getElementById("idE").checked = false;
+    Loading.remove();
     if (
       questionIndex >=
       Que.find({
         header: FlowRouter.getParam("header"),
       }).count()
     ) {
-      console.log("Quiz tamamlandı!");
-      console.log("Your Scor: " + scor);
-
       // dbe kullanıcı sına vsonucunu yazmalıyız
 
       const user = Meteor.user();
       if (user) {
-        console.log("User _id: calldan önce", user._id); // Kullanıcının _id değerini konsola yazdırın
+        //
+        //
+        //
+        //
       }
 
       Meteor.call(
         "result.insert",
         scor,
         user._id,
+        user.profile.firstName,
+        user.profile.lastName,
+        // ***
         FlowRouter.getParam("header"),
         function (error) {
           if (error) {
-            console.log("Soru eklenirken bir hata oluştu:", error.reason);
           } else {
-            console.log("Soru başarıyla eklendi");
             // Soru eklendikten sonra yapılacak işlemleri buraya ekleyebilirsiniz
           }
         }
@@ -135,7 +129,7 @@ Template.pagesQuiz.events({
       //flowrouter ile sınav sonucuna bakmalı
       FlowRouter.go("public.res");
     } else {
-      // // console.log("soru arttırmadan önce a şıkkı: " + question.choices[0]);
+      // //
 
       const headerHData = Que.find({
         header: FlowRouter.getParam("header"),
@@ -153,13 +147,8 @@ Template.pagesQuiz.events({
       //   header: FlowRouter.getParam("header"),
       // }).fetch()[questionIndex];
 
-      console.log(
-        "şu anda bir sonraki sorunun saorusu: " +
-          headerHData[questionIndex].question
-      );
-
-      // // console.log("question.choices[0]: " + question.choices[0]);
-      // // console.log("newQuestion.choices[0]: " + newQuestion.choices[0]);
+      // //
+      // //
       // question.choices[0] = newQuestion.choices[0];
 
       template.$(".question p").text(headerHData[questionIndex].question);
@@ -170,10 +159,11 @@ Template.pagesQuiz.events({
       $("#optionC p").text(headerHData[questionIndex].choices[2]);
       $("#optionD p").text(headerHData[questionIndex].choices[3]);
       $("#optionE p").text(headerHData[questionIndex].choices[4]);
-      // console.log("------>" + choices[0]);
-      // console.log("======>" + newQuestion.choices[0]);
+      //
+      //
+
       for (let i = 0; i < choices.length; i++) {
-        // // console.log(`#choices${i}`);
+        // //
 
         // template.$(`#choices${i + 1}`).text(newChoices[i]);
         template.$(`#choices${i + 1}`).val(i);

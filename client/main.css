@@ -8,7 +8,7 @@ body {
   font-size: xx-large;
   font-weight: 700;
   border-bottom: 1px solid grey;
-  color: navy;
+  color: grey;
 }
 .pagesHomeInputs {
   margin-top: 10vh;
@@ -23,7 +23,7 @@ body {
   width: 50vh;
 }
 .pagesHomeInput:focus {
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px 0px,
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px 5px,
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
 }
 .pagesHomeLogin {
@@ -34,7 +34,15 @@ body {
   align-items: center;
 }
 .publicLayoutsDefault {
-  background-color: lightblue;
+  margin: 0vh;
+  /* background-color: lightblue; */
+
+  background: linear-gradient(236deg, #ffffff, #ff0000, #000000);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 50s ease infinite;
+  -moz-animation: AnimationName 50s ease infinite;
+  animation: AnimationName 50s ease infinite;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -42,6 +50,51 @@ body {
   flex-wrap: nowrap;
   align-items: center;
 }
+
+.backgroundCss {
+  margin: 0px;
+  background: linear-gradient(236deg, #ffffff, #ff0000, #000000);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 50s ease infinite;
+  -moz-animation: AnimationName 50s ease infinite;
+  animation: AnimationName 50s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
 .questionDiv {
   background-color: aliceblue;
   width: 70vh;
@@ -70,31 +123,37 @@ body {
 .publicPagesResults {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .publicPagesResults > div {
-  width: 50vh;
-
-  background-color: aliceblue;
-  margin: 3vh;
+  width: 70vh;
+  height: 10vh;
+  background-color: lightgrey;
+  margin-right: 5vh;
+  margin-left: 5vh;
   padding: 10px;
   display: flex;
   align-items: flex-start;
+  align-content: space-between;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: flex-start;
+  justify-content: flex-end;
 }
 .publicPagesQueHeader {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 .publicPagesQueHeader > div {
   width: 30vh;
   height: 10vh;
-  background-color: aliceblue;
+  background-color: lightgrey;
+  border-radius: 10px;
   margin: 3vh;
   padding: 10px;
   display: flex;
@@ -118,7 +177,7 @@ body {
 }
 .profileEdit {
   width: 30%;
-  background-color: darkturquoise;
+  background-color: lightgrey;
   margin-top: -10vh;
   padding: 5vh;
 }
@@ -153,7 +212,7 @@ body {
   margin-bottom: 2vh;
 }
 #resetPassButton {
-  background-color: darkturquoise;
+  background-color: lightgrey;
   text-decoration: underline;
   border: 0px;
 }
@@ -166,4 +225,106 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+.classInfo {
+  display: flex;
+}
+.colorGrey {
+  color: grey;
+}
+.colorWhite {
+  color: white !important;
+}
+.scor,
+.average {
+  font-weight: bold;
+}
+.nav-link {
+  color: lightgrey !important;
+  text-shadow: 1px 1px 1px black; /* Hafif bir gölge */
+}
+.chatBoxs {
+  width: 50%;
+}
+.chatBox {
+  background-color: lightgrey;
+}
+.chatBoxHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.chatBoxMesaages {
+  height: 45vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column; /* Yeni eklenen satır */
+  overflow-y: scroll;
+  padding-top: 3vh;
+}
+.chatBoxFooter {
+  display: flex;
+  justify-content: space-between;
+  height: 4vh;
+}
+.chatBoxFooterInput {
+  width: 95%;
+  background-color: lightgrey;
+}
+.chatBoxFooterSend {
+  border: 0px;
+  background-color: lightgreen;
+  width: 5%;
+}
+.chatBoxMessaageSet {
+  display: flex;
+  justify-content: space-between;
+}
+.chatBoxMessaageSend {
+  background-color: #d5b59c;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 35%;
+  border-radius: 15px;
+
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+  align-self: flex-end; /* Yeni eklenen satır */
+}
+.chatBoxMessaageSend p {
+  font-size: small;
+}
+
+.chatBoxMessaage {
+  background-color: lightblue;
+  margin-bottom: 2vh;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 35%;
+  border-radius: 15px;
+  margin-left: 2vh;
+  align-self: flex-start;
+  /* Yeni eklenen satır */
+}
+.chatBoxMessaage p {
+  font-size: small;
+}
+.userMessage {
+  /* Kullanıcının mesajlarını sağ tarafta göstermek için gerekli stil ayarları */
+  text-align: right !important;
+  background-color: #dff0d8;
+  /* Diğer stiller... */
+}
+.senderCss .chatBoxMessaage {
+  align-self: flex-end;
+  background-color: #dff0d8;
+}
+
+.anotherUserCss .chatBoxMessaage {
+  align-self: flex-start;
+  background-color: #d9edf7;
 }

@@ -3,6 +3,8 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Accounts } from "meteor/accounts-base";
 import { error } from "jquery";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 Template.pagesLogin.helpers({
   create: function () {
     const self = this;
@@ -21,14 +23,15 @@ Template.pagesLogin.helpers({
 Template.pagesLogin.events({
   "submit form": function (event, template) {
     event.preventDefault();
-    console.log("Login tuşuna bastınız");
+    Loading.dots();
+
     const emailAddress = event.target.loginMail.value;
     const password = event.target.loginPassword.value;
-    Loading.dots();
+
     Meteor.loginWithPassword(emailAddress, password, function (error) {
       Loading.remove();
       if (error) {
-        console.log(error);
+        Notify.failure("Failed Login");
 
         return;
       }
@@ -38,6 +41,7 @@ Template.pagesLogin.events({
         FlowRouter.go(redirect);
       } else {
         FlowRouter.go("public.quizHeader");
+        Notify.success("Login Success");
       }
     });
   },

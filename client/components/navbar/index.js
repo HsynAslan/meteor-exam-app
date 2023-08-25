@@ -5,27 +5,30 @@ Template.componentNavbar.onRendered(function () {
     const loggedInAdd = document.getElementById("loggedAdd");
     const loggedInResults = document.getElementById("loggedResults");
     const unloggedInSignIn = document.getElementById("unloggedSignIn");
+    const unloggedChat = document.getElementById("loggedChat");
     if (
       loggedInProfile &&
       loggedInQuiz &&
       loggedInAdd &&
       loggedInResults &&
-      unloggedInSignIn
+      unloggedInSignIn &&
+      unloggedChat
     ) {
-      console.log("sa");
       loggedInProfile.style.display = "flex";
       loggedInQuiz.style.display = "flex";
       loggedInAdd.style.display = "flex";
       loggedInResults.style.display = "flex";
       unloggedInSignIn.style.display = "none";
+      unloggedChat.style.display = "flex";
 
       const user = Meteor.user();
       if (user) {
         $("#loggedProfile a").text(user.profile.firstName);
-        // console.log("user name: ", user.profile.firstName);
-        // console.log("user lastname: ", user.profile.lastName);
-        //   console.log("user password: ", user.profile.Accounts.setPassword(userId, newPassword););
+        //
+        //
+        //
       }
+
       const position = user.profile && user.profile.position;
       if (position !== "teacher") {
         // öğretmen değilse

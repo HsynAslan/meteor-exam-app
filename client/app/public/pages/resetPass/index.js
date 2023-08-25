@@ -1,17 +1,19 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
-Template.componentNavbar.onRendered(function () {
-  console.log("sa");
-});
+Template.componentNavbar.onRendered(function () {});
 
 Template.PagesResetPass.events({
   "click #changePassButton": function (event, template) {
+    Loading.dots();
     const oldPassC = template.find('[name="oldPass"]').value;
     const newPassC = template.find('[name="newPass"]').value;
     const newAgainPassC = template.find('[name="newAgainPass"]').value;
-
+    Loading.remove();
     if (newPassC !== newAgainPassC) {
-      console.log("Yeni şifreler uyuşmuyor.");
+      Notify.failure('"The new passwords do not match ');
+
       return;
     }
 
@@ -23,10 +25,18 @@ Template.PagesResetPass.events({
       // Eski şifrenin doğruluğunu kontrol et
       try {
         Accounts.changePassword(oldPassC, newPassC);
-        console.log("Şifre değiştirildi.");
+
         FlowRouter.go("login");
+        Notify.success("Change Password Success");
+        Meteor.logout(function (error) {
+          if (error) {
+            Notify.success("Logout unsuccess");
+          } else {
+            Notify.success("Logout Success");
+          }
+        });
       } catch (error) {
-        console.log("Eski şifre yanlış.");
+        Notify.failure("Change Password Fail");
       }
     }
   },

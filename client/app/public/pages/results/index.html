@@ -2,12 +2,21 @@
   <div class="publicPagesResults">
     {{#each result}}
     <div class="result-item">
-      <div class="name">{{this.firstName}} {{this.lastName}}</div>
-      <div class="category">Category: {{this.catagory}}</div>
-      <div class="scor">Score: {{this.scor}}</div>
+      <div class="name">{{this.catagory}} {{this.firstName}}</div>
+      <div class="category">Category: {{this.lastName}}</div>
+      <div class="scor">
+       
+          
+        Score: {{this.scor}} 
+      
+      </div>
       <div class="time">Time: {{formatTime this.createdAt}}</div>
     </div>
     <br />
     {{/each}}
+  </div>
+  <div>
+    <i class="fa-regular fa-hand-point-right fa-fade fa-xl me-3"></i>
+    <a href="{{pathFor "public.classInfo"}}">Click for Class Information</a>
   </div>
 </template>

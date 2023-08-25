@@ -44,7 +44,7 @@ Meteor.methods({
   },
 });
 Meteor.methods({
-  "result.insert": function (scor, userID, catagory) {
+  "result.insert": function (scor, userID, catagory, firstName, lastName) {
     if (!this.userId) {
       throw new Meteor.Error(
         "not-authorized",
@@ -56,8 +56,25 @@ Meteor.methods({
       scor: scor,
       userID: userID,
       catagory: catagory,
+      firstName: firstName,
+      lastName: lastName,
       createdAt: new Date(),
       createdBy: this.userId,
+    });
+  },
+});
+
+Meteor.methods({
+  "create.message": function (messageData) {
+    // Yeni mesajı oluşturmak için verileri alıyoruz
+    const { sender, timestamp, content, messageType } = messageData;
+
+    // Mesajı koleksiyona ekleme
+    Mess.insert({
+      sender: sender,
+      timestamp: timestamp,
+      content: content,
+      messageType: messageType,
     });
   },
 });
