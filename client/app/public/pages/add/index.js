@@ -1,6 +1,42 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+Template.pagesAdd.onRendered(function () {
+  this.autorun(() => {
+    const customSelect = document.getElementById("customSelect");
+    const selectOption = document.getElementById("cevap"); // Seçilen cevap option'ı
+    const questionHeaderInput = document.getElementById(
+      "publicPagesAddCreateQuestionHeader"
+    ); // Soru başlığı input'u
+
+    const uniqueHeaders = Array.from(
+      new Set(
+        Que.find()
+          .fetch()
+          .map((item) => item.header)
+      )
+    );
+
+    // Önce select öğesine seçenekleri ekleyelim
+    customSelect.innerHTML = ""; // Önceki seçenekleri temizle
+    uniqueHeaders.forEach((header) => {
+      const optionElement = document.createElement("option");
+      optionElement.value = header;
+      optionElement.text = header;
+      customSelect.appendChild(optionElement);
+    });
+
+    // Seçenek değiştikçe başlık input'unun içine yaz
+    customSelect.addEventListener("change", () => {
+      questionHeaderInput.value = customSelect.value;
+    });
+
+    // Sayfa yüklendiğinde seçilen seçeneği başlık input'unun içine yaz
+    questionHeaderInput.value = customSelect.value;
+
+    // Diğer input alanlarına da benzer şekilde seçenek değerini ekleyebilirsiniz
+  });
+});
 
 Template.pagesAdd.helpers({
   create: function () {
