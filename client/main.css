@@ -124,7 +124,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  height: 50vh;
 }
 
 .publicPagesResults > div {
@@ -327,4 +329,30 @@ body {
 .anotherUserCss .chatBoxMessaage {
   align-self: flex-start;
   background-color: #d9edf7;
+}
+.pChatClick {
+  color: gray;
+  text-shadow: 1px 1px 1px black; /* Hafif bir gölge */
+  margin-top: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PChat {
+  display: flex;
+  flex-direction: column;
+}
+.PChatSelect {
+  display: flex;
+  margin-bottom: 3vh;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.selectReciver {
+  margin-top: 1vh;
+}
+#selectReciverLabel {
+  color: white;
+  text-shadow: 1px 1px 1px black; /* Hafif bir gölge */
 }

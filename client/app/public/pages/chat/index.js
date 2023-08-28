@@ -1,3 +1,6 @@
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+
 Template.publicPageChat.onRendered(function () {
   const messagesContainer = this.find(".chatBoxMesaages");
   // autorun kullanarak mesajları izleme
@@ -99,5 +102,10 @@ Template.publicPageChat.events({
         event.target.chatText.value = "";
       }
     });
+  },
+
+  "click #buttonPChat": function (event, template) {
+    event.preventDefault();
+    FlowRouter.go("/pChat");
   },
 });

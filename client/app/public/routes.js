@@ -21,6 +21,7 @@ authenticatedRoutes.route("/quiz", {
     Loading.remove();
   },
 });
+
 authenticatedRoutes.route("/quiz/:header", {
   name: "quizPage",
   action(params) {
@@ -71,6 +72,14 @@ authenticatedRoutes.route("/pro", {
   action: function (params, queryParams) {
     Loading.dots();
     this.render("publicLayoutDefault", { page: "pagesProfile" });
+    Loading.remove();
+  },
+});
+authenticatedRoutes.route("/Pchat", {
+  name: "public.Pchat",
+  action: function (params, queryParams) {
+    Loading.dots();
+    this.render("publicLayoutDefault", { page: "pagesPrivateChat" });
     Loading.remove();
   },
 });

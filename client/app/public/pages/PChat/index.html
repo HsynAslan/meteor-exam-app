@@ -1,0 +1,53 @@
+<template name="pagesPrivateChat">
+  <div class="chatBoxs">
+    <form action="">
+      <div class="PChat">
+        <div class="PChatSelect">
+          <label for="customSelect" id="selectReciverLabel"
+            >Choose Past Header:</label
+          >
+          <select id="customSelect" class="selectReciver">
+            <!-- Seçenekleri buraya JavaScript ile ekleyebilirsiniz -->
+          </select>
+          <br /><br />
+        </div>
+        <div>
+          <div class="chatBox chatBoxHeader" id="">
+            <h4>Exam App Private Chat</h4>
+          </div>
+          <div class="chatBox chatBoxMesaages" id="">
+            <div class="chatBoxMessaageSend">
+              <p>Mesaj İçeriği</p>
+              <div class="chatBoxMessaageSet">
+                <p>Hüseyin Aslan</p>
+                <p>15.18</p>
+              </div>
+            </div>
+            <div class="chatBoxMessaage">
+              <p>Mesaj İçeriği</p>
+              <div class="chatBoxMessaageSet">
+                <p>Hüseyin Aslan 2</p>
+                <p>15.18</p>
+              </div>
+            </div>
+          </div>
+          <div class="chatBox chatBoxFooter" id="">
+            <input type="text " class="chatBoxFooterInput" name="chatText" />
+            <button class="chatBoxFooterSend" id="chatSend">
+              <i
+                class="fa-solid fa-paper-plane sendButton"
+                style="color: #21204b"
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="pChatClick">
+        <button id="buttonChat">
+          <i class="fa-regular fa-hand-point-right fa-shake me-2"></i>
+          Click Here for General Chat
+        </button>
+      </div>
+    </form>
+  </div>
+</template>

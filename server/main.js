@@ -78,3 +78,20 @@ Meteor.methods({
     });
   },
 });
+Meteor.methods({
+  "create.PrivateMessages": function (messageData) {
+    // Yeni mesajı oluşturmak için verileri alıyoruz
+    const { sender, senderId, receiverId, timestamp, content, messageType } =
+      messageData;
+
+    // Mesajı koleksiyona ekleme
+    PMess.insert({
+      sender: sender,
+      senderId: senderId,
+      receiverId: receiverId,
+      timestamp: timestamp,
+      content: content,
+      messageType: messageType,
+    });
+  },
+});
