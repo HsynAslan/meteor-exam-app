@@ -40,14 +40,15 @@ authenticatedRoutes.route("/quizHeader", {
   },
 });
 
-authenticatedRoutes.route("/add", {
-  name: "public.add",
-  action: function (params, queryParams) {
-    Loading.dots();
-    this.render("publicLayoutDefault", { page: "pagesAdd" });
-    Loading.remove();
-  },
-});
+// authenticatedRoutes.route("/add", {
+//   name: "public.add",
+//   action: function (params, queryParams) {
+//     Loading.dots();
+
+//     this.render("publicLayoutDefault", { page: "pagesAdd" });
+//     Loading.remove();
+//   },
+// });
 
 authenticatedRoutes.route("/classInfo", {
   name: "public.classInfo",
@@ -126,47 +127,36 @@ FlowRouter.route("/loginTeacher", {
   },
 });
 
-// const checkLoggedTeacherOrStudentForClassInfo = (context, redirect) => {
-//   if (!Meteor.userId()) {
-//     Flowrouter.go("/login");
-//     return;
-//   }
-//   const user = Meteor.user();
-//   if (!user) {
-//     return;
-//   }
-//   const position = user.profile && user.profile.position;
-//   if (position !== "teacher") {
-//     Flowrouter.go("/unauthorized");
-//     return;
-//   }
-// };
+const checkLoggedTeacherOrStudentForClassInfo = (context, redirect) => {
+  if (!Meteor.userId()) {
+    Flowrouter.go("/login");
+    return;
+  }
+  const user = Meteor.users.find({ _id: Meteor.userId() }).fetch();
+  console.log("user: " + user);
+  const position = user.profile && user.profile.position;
+  console.log("position: " + position);
+  if (position !== "teacher") {
+    //position degeri gelmiyor
+    console.log("ife girdik");
+    Flowrouter.go("/unauthorized");
+    return;
+  }
+};
 
-// const authenticatedRoutesTeacherOrStudentForClassInfo = FlowRouter.group({
-//   triggersEnter: [checkLoggedTeacherOrStudentForClassInfo],
-// });
+const authenticatedRoutesTeacherOrStudentForClassInfo = FlowRouter.group({
+  triggersEnter: [checkLoggedTeacherOrStudentForClassInfo],
+});
 
-// authenticatedRoutesTeacherOrStudentForClassInfo.route("/classInfo", {
-//   name: "public.classInfo",
-//   action: function (params, queryParams) {
-//     const user = Meteor.user();
-//     if (user.profile.position === "teacher") {
-//       this.render("publicLayoutDefault", { page: "publicPagesClassInfo" });
-//     } else if (user.profile.position === "student") {
-//       this.render("publicLayoutDefault", { page: "/unauthorized" });
-//     }
-//   },
-// });
+authenticatedRoutesTeacherOrStudentForClassInfo.route("/add", {
+  name: "public.add",
+  action: function (params, queryParams) {
+    const user = Meteor.user();
 
-// authenticatedRoutesTeacherOrStudentForClassInfo.route("/add", {
-//   name: "public.add",
-//   action: function (params, queryParams) {
-//     const user = Meteor.user();
-
-//     if (user.profile.position === "teacher") {
-//       this.render("publicLayoutDefault", { page: "pagesAdd" });
-//     } else if (user.profile.position === "student") {
-//       this.render("publicLayoutDefault", { page: "/unauthorized" });
-//     }
-//   },
-// });
+    if (user.profile.position === "teacher") {
+      this.render("publicLayoutDefault", { page: "pagesAdd" });
+    } else if (user.profile.position === "student") {
+      this.render("publicLayoutDefault", { page: "/unauthorized" });
+    }
+  },
+});

@@ -3,6 +3,10 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 Template.pagesAdd.onRendered(function () {
   this.autorun(() => {
+    console
+      .log
+      // "meteor: " + Meteor.users.find({ _id: Meteor.userId() }).fetch()[0]
+      ();
     const customSelect = document.getElementById("customSelect");
     const selectOption = document.getElementById("cevap"); // Seçilen cevap option'ı
     const questionHeaderInput = document.getElementById(

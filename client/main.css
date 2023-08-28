@@ -356,3 +356,15 @@ body {
   color: white;
   text-shadow: 1px 1px 1px black; /* Hafif bir gölge */
 }
+.chatBoxMessaage > p,
+.chatBoxMessaageSend > p {
+  font-size: 2vh;
+}
+
+.chatBoxMessaageSet > p:first-child {
+  opacity: 0.5;
+}
+p {
+  margin-bottom: 1vh;
+  margin-top: 0px;
+}
