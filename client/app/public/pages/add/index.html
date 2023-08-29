@@ -1,6 +1,6 @@
 <template name="pagesAdd">
   <form id="publicPagesAddCreateQue" class="pagesHomeFormInputs">
-    <div class="pagesHomeInputs">
+    <div class="pagesHomeInputs shadow-lg p-3 mb-5 bg-white rounded">
       <label for="customSelect">Choose Past Header:</label>
       <select id="customSelect">
         <!-- Seçenekleri buraya JavaScript ile ekleyebilirsiniz -->
@@ -71,6 +71,9 @@
     </div>
     <div class="pagesHomeLogin">
       <button type="submit">Login</button>
+    </div>
+    <div class="pagesHomeLogin mt-3 deleteButton">
+      <a href="{{pathFor 'delete'}}">Delete Header Here</a>
     </div>
   </form>
 </template>

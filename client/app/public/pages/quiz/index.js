@@ -32,6 +32,7 @@ Template.pagesQuiz.helpers({
     $("#optionC p").text(headerHData[0].choices[2]);
     $("#optionD p").text(headerHData[0].choices[3]);
     $("#optionE p").text(headerHData[0].choices[4]);
+
     Loading.remove();
     // return questions[questionIndex]; // Soruyu göster
   },

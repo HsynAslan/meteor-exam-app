@@ -1,0 +1,12 @@
+<template name="pagesDelete">
+  <div class="publicPagesQueHeader2">
+    <select id="headerSelect">
+      {{#each distinctHeaders}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+    <button id="deleteButton" class="shadow-lg p-1 mb-5 bg-white rounded">
+      Seçili Başlığa Sahip Soruları Sil
+    </button>
+  </div>
+</template>

@@ -1,5 +1,5 @@
 <template name="pagesResult">
-  <div class="publicPagesResults">
+  <div class="publicPagesResults shadow-lg p-3 mb-5 bg-white rounded">
     {{#each result}}
     <div class="result-item">
       <div class="name">{{this.catagory}} {{this.firstName}}</div>
@@ -15,7 +15,7 @@
     <br />
     {{/each}}
   </div>
-  <div>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <i class="fa-regular fa-hand-point-right fa-fade fa-xl me-3"></i>
     <a href="{{pathFor "public.classInfo"}}">Click for Class Information</a>
   </div>

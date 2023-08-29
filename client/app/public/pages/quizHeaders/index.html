@@ -1,5 +1,5 @@
 <template name="pagesQuizHeader">
-  <div class="publicPagesQueHeader">
+  <div class="publicPagesQueHeader shadow-lg p-3 mb-5 bg-white rounded">
     {{#each distinctHeaders}}
     <div class="questionBox">
       <a href="{{pathFor 'quizPage' header=this}}">{{this}}</a>

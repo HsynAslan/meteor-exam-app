@@ -1,6 +1,6 @@
 <template name="publicPagesClassInfo">
   <div class="classInfo">
-    <div class="publicPagesResults">
+    <div class="publicPagesResults shadow-lg p-3 mb-5 bg-white rounded">
       {{#each result}}
       <div class="result-item">
         <div class="name">{{this.catagory}} {{this.firstName}}</div>
@@ -12,7 +12,7 @@
       {{/each}}
     </div>
 
-    <div class="publicPagesResults">
+    <div class="publicPagesResults shadow-lg p-3 mb-5 bg-white rounded">
       {{#each average}}
       <div class="result-item">
         <div class="category">Category: {{this.category}}</div>

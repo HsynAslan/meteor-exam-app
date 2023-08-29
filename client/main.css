@@ -1,3 +1,4 @@
+@import "~sweetalert2/dist/sweetalert2.min.css";
 body {
   padding: 10px;
   font-family: sans-serif;
@@ -43,6 +44,7 @@ body {
   -webkit-animation: AnimationName 50s ease infinite;
   -moz-animation: AnimationName 50s ease infinite;
   animation: AnimationName 50s ease infinite;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -126,7 +128,11 @@ body {
   justify-content: flex-start;
   flex-wrap: nowrap;
   overflow-y: scroll;
+
   height: 50vh;
+  padding-top: 3vh !important;
+  margin-left: 1vh;
+  margin-right: 1vh;
 }
 
 .publicPagesResults > div {
@@ -178,10 +184,11 @@ body {
   cursor: pointer;
 }
 .profileEdit {
-  width: 30%;
+  width: 30% !important;
   background-color: lightgrey;
   margin-top: -10vh;
-  padding: 5vh;
+  padding: 5vh !important;
+  border-radius: 10px;
 }
 .profileEdit p {
   border: 1px solid grey;
@@ -230,7 +237,11 @@ body {
 }
 .classInfo {
   display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
+
 .colorGrey {
   color: grey;
 }
@@ -367,4 +378,87 @@ body {
 p {
   margin-bottom: 1vh;
   margin-top: 0px;
+}
+#buttonPChat,
+#buttonChat {
+  border-radius: 10px;
+}
+
+button:hover {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+}
+
+button {
+  transition: transform 0.5s ease;
+}
+#chatSend {
+  transform: scale(1) !important;
+}
+.chatBoxEmptyMessage {
+  display: flex;
+  justify-content: center;
+  font-family: math;
+  font-size: x-large;
+  /* font-weight: bold; */
+  text-shadow: 1px 1px grey;
+  margin-top: inherit;
+  /* position: absolute; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.quizTable {
+  position: absolute;
+  top: 15%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 20%;
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.quizTableButton {
+  border-radius: 5px;
+  transform: scale(1) !important;
+}
+.navbar-brand {
+  text-shadow: black 1px 1px 1px !important;
+  color: lightgrey !important;
+}
+.deleteButton a {
+  margin-bottom: 1vh;
+  box-shadow: 2px 5px 2px 0px;
+  background-color: white;
+  padding: 5px;
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.publicPagesQueHeader2 {
+  display: flex;
+  flex-direction: column;
+}
+.publicPagesQueHeader2 > select {
+  width: 30vh;
+
+  background-color: lightgrey;
+  border-radius: 10px;
+  margin: 3vh;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 4vh;
+}
+
+.publicPagesQueHeader2 > button {
+  margin-top: 5vh;
 }

@@ -1,7 +1,7 @@
 <template name="pagesQuiz">
   <form name="questionForm">
     {{#with headerData}}
-    <div class="questionDiv mt-2 ms-2">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded questionDiv mt-2 ms-2">
       <div class="questionDivQuesiton">
         <p id="questionNumber" class="me-4 ms-2">1</p>
         <p id="question">{{ question.question }}</p>
@@ -48,5 +48,11 @@
       </div>
     </div>
     {{/with}}
+
+    <!-- <div class="quizTable">
+      {{#each headerData.questions}}
+      <button class="quizTableButton" id="{{this._id}}">{{@index}}</button>
+      {{/each}}
+    </div> -->
   </form>
 </template>

@@ -1,5 +1,3 @@
-import { FlowRouter } from "meteor/ostrio:flow-router-extra";
-import { Loading } from "notiflix/build/notiflix-loading-aio";
 // Yardımcı fonksiyon: Yeni mesajı oluşturup veritabanına ekler ve ardından mesajları günceller
 function sendMessage(senderId, receiverId, content) {
   const currentUser = Meteor.user();
@@ -48,35 +46,42 @@ function updateMessages(senderId, receiverId) {
     { sort: { timestamp: 1 } }
   ).fetch();
 
-  messages.forEach((message) => {
-    const messageDiv = document.createElement("div");
+  if (messages.length === 0) {
+    const emptyMessageDiv = document.createElement("div");
+    emptyMessageDiv.className = "chatBoxEmptyMessage";
+    emptyMessageDiv.textContent = "Henüz mesaj yok. Haydi bir mesaj bırak!";
+    chatBox.appendChild(emptyMessageDiv);
+  } else {
+    messages.forEach((message) => {
+      const messageDiv = document.createElement("div");
 
-    if (message.senderId === currentUser._id) {
-      messageDiv.className = "chatBoxMessaageSend";
-    } else {
-      messageDiv.className = "chatBoxMessaage";
-    }
+      if (message.senderId === currentUser._id) {
+        messageDiv.className = "chatBoxMessaageSend";
+      } else {
+        messageDiv.className = "chatBoxMessaage";
+      }
 
-    const messageContent = document.createElement("p");
-    messageContent.textContent = message.content;
+      const messageContent = document.createElement("p");
+      messageContent.textContent = message.content;
 
-    const messageSet = document.createElement("div");
-    messageSet.className = "chatBoxMessaageSet";
+      const messageSet = document.createElement("div");
+      messageSet.className = "chatBoxMessaageSet";
 
-    const sender = document.createElement("p");
-    sender.textContent = message.sender;
+      const sender = document.createElement("p");
+      sender.textContent = message.sender;
 
-    const timestamp = document.createElement("p");
-    timestamp.textContent = message.timestamp.toLocaleTimeString();
+      const timestamp = document.createElement("p");
+      timestamp.textContent = message.timestamp.toLocaleTimeString();
 
-    messageSet.appendChild(sender);
-    messageSet.appendChild(timestamp);
+      messageSet.appendChild(sender);
+      messageSet.appendChild(timestamp);
 
-    messageDiv.appendChild(messageContent);
-    messageDiv.appendChild(messageSet);
+      messageDiv.appendChild(messageContent);
+      messageDiv.appendChild(messageSet);
 
-    chatBox.appendChild(messageDiv);
-  });
+      chatBox.appendChild(messageDiv);
+    });
+  }
 }
 
 // Yardımcı fonksiyon: Sayfayı aşağı kaydırır
@@ -102,10 +107,6 @@ Template.pagesPrivateChat.events({
       // İçeriği temizle
       inputElement.value = "";
     }
-  },
-  "click #buttonChat": function (event, template) {
-    event.preventDefault();
-    FlowRouter.go("/chat");
   },
 });
 
@@ -154,35 +155,42 @@ Template.pagesPrivateChat.onRendered(function () {
         { sort: { timestamp: 1 } }
       ).fetch();
 
-      messages.forEach((message) => {
-        const messageDiv = document.createElement("div");
+      if (messages.length === 0) {
+        const emptyMessageDiv = document.createElement("div");
+        emptyMessageDiv.className = "chatBoxEmptyMessage";
+        emptyMessageDiv.textContent = "Henüz mesaj yok. Haydi bir mesaj bırak!";
+        chatBox.appendChild(emptyMessageDiv);
+      } else {
+        messages.forEach((message) => {
+          const messageDiv = document.createElement("div");
 
-        if (message.senderId === currentUser._id) {
-          messageDiv.className = "chatBoxMessaageSend";
-        } else {
-          messageDiv.className = "chatBoxMessaage";
-        }
+          if (message.senderId === currentUser._id) {
+            messageDiv.className = "chatBoxMessaageSend";
+          } else {
+            messageDiv.className = "chatBoxMessaage";
+          }
 
-        const messageContent = document.createElement("p");
-        messageContent.textContent = message.content;
+          const messageContent = document.createElement("p");
+          messageContent.textContent = message.content;
 
-        const messageSet = document.createElement("div");
-        messageSet.className = "chatBoxMessaageSet";
+          const messageSet = document.createElement("div");
+          messageSet.className = "chatBoxMessaageSet";
 
-        const sender = document.createElement("p");
-        sender.textContent = message.sender;
+          const sender = document.createElement("p");
+          sender.textContent = message.sender;
 
-        const timestamp = document.createElement("p");
-        timestamp.textContent = message.timestamp.toLocaleTimeString();
+          const timestamp = document.createElement("p");
+          timestamp.textContent = message.timestamp.toLocaleTimeString();
 
-        messageSet.appendChild(sender);
-        messageSet.appendChild(timestamp);
+          messageSet.appendChild(sender);
+          messageSet.appendChild(timestamp);
 
-        messageDiv.appendChild(messageContent);
-        messageDiv.appendChild(messageSet);
+          messageDiv.appendChild(messageContent);
+          messageDiv.appendChild(messageSet);
 
-        chatBox.appendChild(messageDiv);
-      });
+          chatBox.appendChild(messageDiv);
+        });
+      }
     });
   });
 });

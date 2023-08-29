@@ -60,6 +60,16 @@ authenticatedRoutes.route("/classInfo", {
   },
 });
 
+authenticatedRoutes.route("/delete", {
+  name: "public.delete",
+  action: function (params, queryParams) {
+    Loading.dots();
+    this.render("publicLayoutDefault", { page: "pagesDelete" });
+
+    Loading.remove();
+  },
+});
+
 authenticatedRoutes.route("/resetPass", {
   name: "public.resetPass",
   action: function (params, queryParams) {

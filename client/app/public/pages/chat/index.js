@@ -1,6 +1,6 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
-
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 Template.publicPageChat.onRendered(function () {
   const messagesContainer = this.find(".chatBoxMesaages");
   // autorun kullanarak mesajları izleme
@@ -97,6 +97,7 @@ Template.publicPageChat.events({
     Meteor.call("create.message", newMessage, (error, result) => {
       if (error) {
         console.error("Hata oluştu:", error);
+        Notify.failure("Message Error");
       } else {
         console.log("Mesaj başarıyla oluşturuldu.");
         event.target.chatText.value = "";
