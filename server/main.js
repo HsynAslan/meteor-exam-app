@@ -25,7 +25,14 @@ Meteor.methods({
 
 // Sunucu tarafında (server/main.js gibi bir dosyada)
 Meteor.methods({
-  "questions.insert": function (question, choices, answer, header) {
+  "questions.insert": function (
+    question,
+    choices,
+    answer,
+    header,
+    startDate,
+    endDate
+  ) {
     if (!this.userId) {
       throw new Meteor.Error(
         "not-authorized",
@@ -33,16 +40,24 @@ Meteor.methods({
       );
     }
 
+    // JavaScript tarih nesneleri oluşturun
+    const createdAt = new Date();
+    const parsedStartDate = new Date(startDate);
+    const parsedEndDate = new Date(endDate);
+
     Que.insert({
       question: question,
       choices: choices,
       answer: answer,
       header: header,
-      createdAt: new Date(),
+      createdAt: createdAt,
       createdBy: this.userId,
+      startDate: parsedStartDate,
+      endDate: parsedEndDate,
     });
   },
 });
+
 Meteor.methods({
   "result.insert": function (scor, userID, catagory, firstName, lastName) {
     if (!this.userId) {

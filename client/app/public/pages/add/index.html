@@ -68,10 +68,21 @@
         <option value="e">Option E</option>
       </select>
       <br /><br />
+      <div class="pagesHomeTime">
+        <div class="flexDate">
+          <label for="tarih1">Exam Start Time:</label>
+          <input type="datetime-local" id="tarih1" name="tarih1" /><br /><br />
+        </div>
+        <div class="flexDate">
+          <label for="tarih2">Exam End Time:</label>
+          <input type="datetime-local" id="tarih2" name="tarih2" /><br /><br />
+        </div>
+      </div>
     </div>
     <div class="pagesHomeLogin">
       <button type="submit">Login</button>
     </div>
+
     <div class="pagesHomeLogin mt-3 deleteButton">
       <a href="{{pathFor 'delete'}}">Delete Header Here</a>
     </div>

@@ -138,20 +138,18 @@ FlowRouter.route("/loginTeacher", {
 });
 
 // const checkLoggedTeacherOrStudentForClassInfo = (context, redirect) => {
-//   if (!Meteor.userId()) {
-//     Flowrouter.go("/login");
-//     return;
-//   }
-//   const user = Meteor.users.find({ _id: Meteor.userId() }).fetch();
-//   console.log("user: " + user);
-//   const position = user.profile && user.profile.position;
-//   console.log("position: " + position);
-//   if (position !== "teacher") {
-//     //position degeri gelmiyor
-//     console.log("ife girdik");
-//     Flowrouter.go("/unauthorized");
-//     return;
-//   }
+//   Tracker.autorun(() => {
+//     const user = Meteor.user();
+//     console.log(user);
+//     if (!user) return;
+//     const position = user.profile.position;
+//     console.log("position: " + position);
+//     if (position !== "teacher") {
+//       console.log("ife girdik");
+//       FlowRouter.go("/unauthorized");
+//       return;
+//     }
+//   });
 // };
 
 // const authenticatedRoutesTeacherOrStudentForClassInfo = FlowRouter.group({

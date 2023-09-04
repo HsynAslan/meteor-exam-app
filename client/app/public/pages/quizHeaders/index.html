@@ -2,9 +2,31 @@
   <div class="publicPagesQueHeader shadow-lg p-3 mb-5 bg-white rounded">
     {{#each distinctHeaders}}
     <div class="questionBox">
-      <a href="{{pathFor 'quizPage' header=this}}">{{this}}</a>
+      <a
+        href="{{#if isQuizAvailable this}}{{pathFor 'quizPage' header=this.header}}{{else}}javascript:void(0);{{/if}}"
+      >
+        {{this.header}}
+      </a>
+      <div class="restTime mt-2">
+        <b id="quizHeaderEx"> {{quizStatus this}}</b>
+      </div>
     </div>
     <br />
     {{/each}}
   </div>
 </template>
+
+<!-- <template name="pagesQuizHeader">
+  <div class="publicPagesQueHeader shadow-lg p-3 mb-5 bg-white rounded">
+    {{#each distinctHeaders}}
+    <div class="questionBox">
+      {{#if linkDisabled}}
+        <span>{{remainingTimeText}}</span>
+      {{else}}
+        <a href="{{pathFor 'quizPage' header=this}}">{{header}}</a>
+      {{/if}}
+    </div>
+    <br />
+    {{/each}}
+  </div>
+</template> -->

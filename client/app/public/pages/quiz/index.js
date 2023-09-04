@@ -9,13 +9,29 @@ Template.componentNavbar.onRendered(function () {});
 Template.pagesQuiz.helpers({
   headerData() {
     const header = FlowRouter.getParam("header");
-    // header bilgisini ve diğer gerekli verileri döndürün
-    // Örneğin, header bilgisini ve soruları buradan döndürebilirsiniz
-    return {
-      header: header,
-      questions: Que.find({ header: header }).fetch(),
-      questionIndex: 0,
-    };
+    const quiz = Que.findOne({ header: header });
+
+    if (quiz) {
+      const startDate = new Date(quiz.startDate);
+      const endDate = new Date(quiz.endDate);
+      const currentDate = new Date();
+
+      if (currentDate >= startDate && currentDate <= endDate) {
+        // Sınav süresi içindeyiz, header'ı döndür
+        return {
+          header: header,
+          questions: Que.find({ header: header }).fetch(),
+          questionIndex: 0,
+        };
+      } else {
+        // Sınav süresi dışında, "Unauthorized" sayfasına yönlendir
+        FlowRouter.go("/unauthorized");
+        return null; // null döndürerek template'ın yüklenmemesini sağla
+      }
+    } else {
+      // Belirtilen header bulunamadı veya hata oluştu
+      return null; // null döndürerek template'ın yüklenmemesini sağla
+    }
   },
   question() {
     Loading.dots();

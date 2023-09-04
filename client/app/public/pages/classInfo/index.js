@@ -1,3 +1,21 @@
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import * as d3 from "d3";
+
+Template.publicPagesClassInfo.onRendered(function () {
+  console.log("*********");
+  this.autorun(() => {
+    const user = Meteor.user();
+    if (!user) return;
+    console.log("user: ", user);
+    const position = user.profile.position;
+
+    if (position !== "teacher") {
+      FlowRouter.go("/unauthorized");
+      return;
+    }
+  });
+});
+
 Template.publicPagesClassInfo.helpers({
   result() {
     const user = Meteor.user();

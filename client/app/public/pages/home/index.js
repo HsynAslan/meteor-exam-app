@@ -43,6 +43,7 @@ Template.pagesHome.events({
       Accounts.createUser(obj, function (error, result) {
         Loading.remove();
         if (error) {
+          console.log();
           Notify.failure("Invalid Login İnformation");
         } else {
           FlowRouter.go("/quizHeader");
