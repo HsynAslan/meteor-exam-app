@@ -7,9 +7,14 @@ Template.pagesQuizHeader.onRendered(function () {
 
 Template.pagesQuizHeader.helpers({
   quizStatus(quiz) {
-    const startDate = new Date(quiz.startDate); // Sınavın başlama tarihini alın
-    const endDate = new Date(quiz.endDate); // Sınavın bitiş tarihini alın
-    const currentDate = new Date(); // Şu anki tarihi alın
+    if (quiz.header === "Soru yok") {
+      // Eğer başlık "Soru yok" ise hiçbir şey göstermeyin
+      return "";
+    }
+
+    const startDate = new Date(quiz.startDate);
+    const endDate = new Date(quiz.endDate);
+    const currentDate = new Date();
 
     if (currentDate < startDate) {
       // Sınav başlamamış, kalan zamanı hesapla
@@ -23,16 +28,53 @@ Template.pagesQuizHeader.helpers({
       );
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-      return `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
+      // Sınav süresini hesapla
+      const duration = calculateDuration(startDate, endDate);
+
+      return `Sınav Süresi: ${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye `;
     } else if (currentDate <= endDate) {
       // Sınav süresi içinde, sınavı yapabilir
       return "Sınava giriş yapabilirsiniz.";
     } else {
       // Sınav süresi dolmuş
-
-      return "Sınav süresi doldu.";
+      return "";
     }
   },
+
+  quizStatus2(quiz) {
+    if (quiz.header === "Soru yok") {
+      // Eğer başlık "Soru yok" ise hiçbir şey göstermeyin
+      return "";
+    }
+
+    const startDate = new Date(quiz.startDate);
+    const endDate = new Date(quiz.endDate);
+    const currentDate = new Date();
+
+    if (currentDate < startDate) {
+      // Sınav başlamamış, kalan zamanı hesapla
+      const timeDifference = startDate - currentDate;
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      // Sınav süresini hesapla
+      const duration = calculateDuration(startDate, endDate);
+
+      return `Sınav Süresi:  ${duration.days} gün, ${duration.hours} saat, ${duration.minutes} dakika`;
+    } else if (currentDate <= endDate) {
+      // Sınav süresi içinde, sınavı yapabilir
+    } else {
+      // Sınav süresi dolmuş
+      return "";
+    }
+  },
+
   isQuizAvailable(quiz) {
     const startDate = new Date(quiz.startDate); // Sınavın başlama tarihini alın
     const endDate = new Date(quiz.endDate); // Sınavın başlama tarihini alın
@@ -49,21 +91,32 @@ Template.pagesQuizHeader.helpers({
 
   distinctHeaders() {
     Loading.dots();
-    const uniqueHeaders = Que.find()
-      .fetch()
-      .map((item) => {
-        // Kalan zamanı hesapla
-        const remainingTime = calculateRemainingTime(item.startDate);
+    const quizzes = Que.find().fetch();
+    const uniqueHeaders = {};
 
-        // Item verisini genişlet
-        return {
+    quizzes.forEach((item) => {
+      // Kalan zamanı hesapla
+      const remainingTime = calculateRemainingTime(item.startDate);
+
+      // Eğer bu başlık daha önce eklenmemişse, ekleyin
+      if (!uniqueHeaders[item.header]) {
+        uniqueHeaders[item.header] = {
           ...item,
           remainingTime,
         };
-      });
+      }
+    });
 
     Loading.remove();
-    return uniqueHeaders;
+
+    const uniqueHeadersArray = Object.values(uniqueHeaders);
+
+    if (uniqueHeadersArray.length === 0) {
+      // Eğer hiç başlık yoksa "Soru yok" mesajını ekleyin
+      uniqueHeadersArray.push({ header: "Soru yok" });
+    }
+
+    return uniqueHeadersArray;
   },
 });
 
@@ -83,6 +136,22 @@ function calculateRemainingTime(startDate) {
   const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
   // Kalan zamanı bir nesne olarak döndür
+  return {
+    days,
+    hours,
+    minutes,
+    seconds,
+  };
+}
+function calculateDuration(startDate, endDate) {
+  const timeDifference = endDate - startDate;
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
   return {
     days,
     hours,

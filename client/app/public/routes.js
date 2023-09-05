@@ -69,6 +69,15 @@ authenticatedRoutes.route("/delete", {
     Loading.remove();
   },
 });
+authenticatedRoutes.route("/calendar", {
+  name: "public.calendar",
+  action: function (params, queryParams) {
+    Loading.dots();
+    this.render("publicLayoutDefault", { page: "pagesCalendar" });
+
+    Loading.remove();
+  },
+});
 
 authenticatedRoutes.route("/resetPass", {
   name: "public.resetPass",

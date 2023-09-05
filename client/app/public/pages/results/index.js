@@ -21,11 +21,15 @@ Template.pagesResult.helpers({
   result() {
     const user = Meteor.user();
     if (user) {
-    }
-    specificId = user._id;
-    const results = Res.find({ userID: specificId }).fetch();
+      specificId = user._id;
+      const results = Res.find({ userID: specificId }).fetch();
 
-    return results;
+      if (results.length === 0) {
+        return [{ message: "Sonuç yok" }]; // Eğer sonuç yoksa "Sonuç yok" mesajını içeren bir nesne döndürün
+      }
+
+      return results;
+    }
   },
 
   formatTime(timestamp) {

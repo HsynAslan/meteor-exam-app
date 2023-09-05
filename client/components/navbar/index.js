@@ -6,13 +6,15 @@ Template.componentNavbar.onRendered(function () {
     const loggedInResults = document.getElementById("loggedResults");
     const unloggedInSignIn = document.getElementById("unloggedSignIn");
     const unloggedChat = document.getElementById("loggedChat");
+    const unloggedCalendar = document.getElementById("loggedCalendar");
     if (
       loggedInProfile &&
       loggedInQuiz &&
       loggedInAdd &&
       loggedInResults &&
       unloggedInSignIn &&
-      unloggedChat
+      unloggedChat &&
+      unloggedCalendar
     ) {
       loggedInProfile.style.display = "flex";
       loggedInQuiz.style.display = "flex";
@@ -20,7 +22,7 @@ Template.componentNavbar.onRendered(function () {
       loggedInResults.style.display = "flex";
       unloggedInSignIn.style.display = "none";
       unloggedChat.style.display = "flex";
-
+      unloggedCalendar.style.display = "flex";
       const user = Meteor.user();
       if (user) {
         $("#loggedProfile a").text(user.profile.firstName);

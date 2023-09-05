@@ -110,3 +110,25 @@ Meteor.methods({
     });
   },
 });
+
+Meteor.methods({
+  "insert.calen": function (senderId, day, month, year, notText) {
+    // Yeni mesajı oluşturmak için verileri alıyoruz
+    if (!this.userId) {
+      throw new Meteor.Error(
+        "not-authorized",
+        "Not eklemek için giriş yapmalısınız."
+      );
+    }
+    const createdAt = new Date();
+    // Mesajı koleksiyona ekleme
+    Calen.insert({
+      senderId: senderId,
+      day: day,
+      month: month,
+      year: year,
+      notText: notText,
+      createdAt: createdAt,
+    });
+  },
+});
