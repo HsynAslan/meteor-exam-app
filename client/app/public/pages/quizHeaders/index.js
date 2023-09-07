@@ -5,6 +5,11 @@ Template.pagesQuizHeader.onRendered(function () {
   this.autorun(() => {});
 });
 
+function hasUserTakenQuiz(specificId, header) {
+  const results = Res.find({ userID: specificId, lastName: header }).fetch();
+  return results.length > 0;
+}
+
 Template.pagesQuizHeader.helpers({
   quizStatus(quiz) {
     if (quiz.header === "Soru yok") {
@@ -15,6 +20,17 @@ Template.pagesQuizHeader.helpers({
     const startDate = new Date(quiz.startDate);
     const endDate = new Date(quiz.endDate);
     const currentDate = new Date();
+
+    const user = Meteor.user();
+    let specificId;
+    if (user) {
+      specificId = user._id; // Kullanıcının kimliğini al
+    }
+
+    if (hasUserTakenQuiz(specificId, quiz.header)) {
+      console.log("Bu sınava zaten girdiniz");
+      return "Bu sınava zaten girdiniz";
+    }
 
     if (currentDate < startDate) {
       // Sınav başlamamış, kalan zamanı hesapla
@@ -31,7 +47,7 @@ Template.pagesQuizHeader.helpers({
       // Sınav süresini hesapla
       const duration = calculateDuration(startDate, endDate);
 
-      return `Sınav Süresi: ${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye `;
+      return `Sınava Kalan Zaman: ${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye `;
     } else if (currentDate <= endDate) {
       // Sınav süresi içinde, sınavı yapabilir
       return "Sınava giriş yapabilirsiniz.";
@@ -65,12 +81,30 @@ Template.pagesQuizHeader.helpers({
 
       // Sınav süresini hesapla
       const duration = calculateDuration(startDate, endDate);
-
+      const duration2 = duration;
       return `Sınav Süresi:  ${duration.days} gün, ${duration.hours} saat, ${duration.minutes} dakika`;
     } else if (currentDate <= endDate) {
       // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+      // Sınav süresi içinde, sınavı yapabilir
+
+      return "";
     } else {
-      // Sınav süresi dolmuş
+      // Sınav süresi dolmuş, ve kullanıcı daha önce sınavı tamamlamamış
+      if (!hasUserTakenQuiz(Meteor.userId(), quiz.header)) {
+        // document.getElementById("quizHeaderEx2").style.borderBottom =
+        //   "1px solid black";
+        // document.getElementById("quizHeaderEx2").style.borderTop =
+        //   "0px solid black";
+        return "Sınav Süresi Doldu !";
+      }
+      // Eğer kullanıcı sınava zaten girmişse, başka bir mesaj göstermeyin
       return "";
     }
   },
@@ -92,18 +126,36 @@ Template.pagesQuizHeader.helpers({
   distinctHeaders() {
     Loading.dots();
     const quizzes = Que.find().fetch();
-    const uniqueHeaders = {};
+    const uniqueHeaders = [];
 
     quizzes.forEach((item) => {
       // Kalan zamanı hesapla
       const remainingTime = calculateRemainingTime(item.startDate);
 
-      // Eğer bu başlık daha önce eklenmemişse, ekleyin
-      if (!uniqueHeaders[item.header]) {
-        uniqueHeaders[item.header] = {
-          ...item,
-          remainingTime,
-        };
+      if (
+        !uniqueHeaders.some((headerItem) => headerItem.header === item.header)
+      ) {
+        const user = Meteor.user();
+        let specificId;
+        if (user) {
+          specificId = user._id; // Kullanıcının kimliğini al
+        }
+        const userHasTakenQuiz = hasUserTakenQuiz(specificId, item.header);
+        if (userHasTakenQuiz) {
+          console.log("Bu sınava zaten girdiniz");
+          // Kullanıcı sınava katılmışsa, uyarı verin
+          uniqueHeaders.push({
+            header: item.header,
+            message: "Bu sınava zaten girdiniz",
+          });
+        } else {
+          // Kullanıcı sınava daha önce katılmamışsa, sınav bilgilerini ekleyin
+          uniqueHeaders.push({
+            ...item,
+            remainingTime,
+          });
+        }
+      } else {
       }
     });
 

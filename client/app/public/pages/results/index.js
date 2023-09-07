@@ -1,3 +1,4 @@
+import { index } from "d3";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 Template.pagesResult.onRendered(function () {
@@ -11,9 +12,24 @@ Template.pagesResult.onRendered(function () {
     if (position !== "teacher") {
       var div = document.getElementById("classInfoButton");
       div.style.display = "none";
-
       return;
     }
+
+    // NodeList'i bir diziye dönüştürün
+    const resultItems = document.querySelectorAll(".result-item");
+    const resultItemsArray = Array.from(resultItems);
+
+    // Dizi üzerinde forEach döngüsünü kullanın
+    console.log("resultItemsArray[index]: " + resultItemsArray[index]);
+    resultItemsArray.forEach((item) => {
+      console.log("girdi");
+      const scorValue = parseInt(
+        item.querySelector(".scor").textContent.replace("Score: ", ""),
+        10
+      );
+      const scorInside = item.querySelector(".scorInside");
+      scorInside.style.width = scorValue + "%";
+    });
   });
 });
 
@@ -36,4 +52,21 @@ Template.pagesResult.helpers({
     const date = new Date(timestamp);
     return date.toLocaleString(); // Özel bir saat biçimlendirmesi yapabilirsiniz
   },
+
+  // rendered: function () {
+  //   // NodeList'i bir diziye dönüştürün
+  //   const resultItems = document.querySelectorAll(".result-item");
+  //   const resultItemsArray = Array.from(resultItems);
+
+  //   // Dizi üzerinde forEach döngüsünü kullanın
+  //   console.log("resultItemsArray[index]: " + resultItemsArray[index]);
+  //   resultItemsArray.forEach((item) => {
+  //     console.log("girdi");
+  //     const scorValue = parseFloat(
+  //       item.querySelector(".scor").textContent.replace("Score: ", "")
+  //     );
+  //     const scorInside = item.querySelector(".scorInside");
+  //     scorInside.style.width = scorValue + "%";
+  //   });
+  // },
 });

@@ -7,6 +7,7 @@ Template.componentNavbar.onRendered(function () {
     const unloggedInSignIn = document.getElementById("unloggedSignIn");
     const unloggedChat = document.getElementById("loggedChat");
     const unloggedCalendar = document.getElementById("loggedCalendar");
+    const unloggedSignIn = document.getElementById("unloggedLogin");
     if (
       loggedInProfile &&
       loggedInQuiz &&
@@ -26,7 +27,7 @@ Template.componentNavbar.onRendered(function () {
       const user = Meteor.user();
       if (user) {
         $("#loggedProfile a").text(user.profile.firstName);
-        //
+        unloggedSignIn.style.display = "none";
         //
         //
       }

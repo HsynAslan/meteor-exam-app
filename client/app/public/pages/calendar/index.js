@@ -103,6 +103,24 @@ Template.pagesCalendar.onRendered(function () {
               year: year,
             };
 
+            // Tüm calendar-day-hover sınıfına sahip div öğelerini seçin (eğer bu sınıfı kullanıyorsanız)
+            const calendarDayHoverElements = document.querySelectorAll(
+              ".calendar-day-hover"
+            );
+
+            // Tüm div öğelerinin border değerini sıfırlayın
+            calendarDayHoverElements.forEach((divElement) => {
+              divElement.style.border = "none";
+            });
+
+            // data-day değeri clickedDay olan div öğesini seçin
+            const divElement = document.querySelector(
+              `[data-day="${clickedDay}"]`
+            );
+
+            // Div öğesinin stilini değiştirin (örneğin, border'ı değiştirin)
+            divElement.style.border = "2px solid black";
+
             // Default olarak mevcut günün notlarını activity2 altındaki <ul> içine ekleyin
             const currentDate = new Date();
             const currentYear = currentDate.getFullYear(); // Şu anki yılı alın
@@ -128,6 +146,12 @@ Template.pagesCalendar.onRendered(function () {
               li.textContent = note.notText;
               activity2List.appendChild(li);
             });
+
+            if (activity2List.innerHTML == "") {
+              const li = document.createElement("li");
+              li.textContent = "List empty";
+              activity2List.appendChild(li);
+            }
           });
         }
         calendar_days.appendChild(day);
@@ -182,6 +206,12 @@ Template.pagesCalendar.onRendered(function () {
       li.textContent = note.notText;
       activity2List.appendChild(li);
     });
+
+    if (activity2List.innerHTML == "") {
+      const li = document.createElement("li");
+      li.textContent = "List empty";
+      activity2List.appendChild(li);
+    }
   });
 });
 

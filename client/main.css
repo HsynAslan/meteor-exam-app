@@ -131,7 +131,8 @@ body {
   justify-content: flex-start;
   flex-wrap: nowrap;
   overflow-y: scroll;
-
+  background: url("/images/background11.jpg") no-repeat;
+  background-size: cover;
   height: 50vh;
   padding-top: 3vh !important;
   margin-left: 1vh;
@@ -140,7 +141,7 @@ body {
 
 .publicPagesResults > div {
   width: 70vh;
-  height: 10vh;
+  height: 15vh;
   background-color: lightgrey;
   margin-right: 5vh;
   margin-left: 5vh;
@@ -159,6 +160,8 @@ body {
   align-content: space-around;
   justify-content: center;
   align-items: center;
+  background: url("/images/background11.jpg") no-repeat;
+  background-size: cover;
 }
 .publicPagesQueHeader > div {
   width: 30vh;
@@ -495,8 +498,8 @@ button {
   flex-wrap: wrap;
 }
 #quizHeaderEx2 {
-  border: 1px solid black;
-  border-radius: 8px;
+  border-top: 1px solid black;
+
   padding-right: 5px;
   padding-left: 5px;
 }
@@ -504,6 +507,7 @@ button {
   --dark-body: #4d4c5a;
   --dark-main: #141529;
   --dark-second: #79788c;
+  --green-board: #327870;
   --dark-hover: #323048;
   --dark-text: #f8fbff;
   --light-body: #f3f8fe;
@@ -656,7 +660,7 @@ button {
 
 .calendar-days div.curr-date,
 .calendar-days div.curr-date:hover {
-  background-color: var(--blue);
+  background-color: var(--green-board);
   color: var(--white);
   border-radius: 50%;
 }
@@ -757,11 +761,13 @@ button {
   align-items: stretch;
   font-family: "Poppins", serif;
   background: rgb(238, 174, 202);
-  background: radial-gradient(
+  background: url("/images/background11.jpg") no-repeat;
+  background-size: cover;
+  /* background: radial-gradient(
     circle,
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
-  );
+  ); */
   width: 85% !important;
   flex-direction: row;
   flex-wrap: wrap;
@@ -770,7 +776,7 @@ button {
   padding-bottom: 6vh;
 }
 .activity {
-  background-color: #007497;
+  background-color: azure;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -782,7 +788,7 @@ button {
   margin-right: -3vh;
 }
 .activity2 {
-  background-color: #007497;
+  background-color: azure;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -828,4 +834,21 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: stretch;
+}
+.scor {
+  width: 50%;
+  background-color: var(--green-board);
+  padding: 5px;
+}
+.scorInside {
+  background-color: white;
+  width: auto;
+  /* pauna göre width */
+}
+.resultTime {
+  margin-top: 1vh;
+  /* selam bu benim son commitim */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

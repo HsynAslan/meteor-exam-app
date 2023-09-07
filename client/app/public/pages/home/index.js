@@ -19,6 +19,19 @@ Template.pagesHome.helpers({
   },
 });
 
+Template.pagesHome.onRendered(function () {
+  console.log("*********");
+  this.autorun(() => {
+    const user = Meteor.user();
+    if (!user) return;
+    console.log("user: ", user);
+    const position = user.profile.position;
+    if (user) {
+      FlowRouter.go("/quizHeader");
+    }
+  });
+});
+
 Template.pagesHome.events({
   "submit form": function (event, template) {
     event.preventDefault();

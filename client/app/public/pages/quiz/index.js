@@ -4,7 +4,42 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 let scor = 0;
 let questionIndex = 0;
 
-Template.componentNavbar.onRendered(function () {});
+function hasUserTakenQuiz(specificId, header) {
+  const results = Res.find({ userID: specificId, lastName: header }).fetch();
+  return results.length > 0;
+}
+
+Template.pagesQuiz.onRendered(function () {
+  console.log("*********");
+  this.autorun(() => {
+    const user = Meteor.user();
+    if (user) {
+      specificId = user._id; // Kullanıcının kimliğini al
+      const header = FlowRouter.getParam("header");
+      console.log("header: " + header);
+      if (hasUserTakenQuiz(specificId, header)) {
+        console.log("Bu sınava zaten girdiniz");
+        FlowRouter.go("/res");
+      }
+    }
+
+    const headerHData = Que.find({
+      header: FlowRouter.getParam("header"),
+    }).fetch();
+    // questions[questionIndex].question
+
+    $(".question p").text(headerHData[0].question);
+
+    $("#optionA p").text(headerHData[0].choices[0]);
+    $("#optionB p").text(headerHData[0].choices[1]);
+    $("#optionC p").text(headerHData[0].choices[2]);
+    $("#optionD p").text(headerHData[0].choices[3]);
+    $("#optionE p").text(headerHData[0].choices[4]);
+
+    Loading.remove();
+    // return questions[questionIndex]; // Soruyu göster
+  });
+});
 
 Template.pagesQuiz.helpers({
   headerData() {
@@ -95,6 +130,26 @@ Template.pagesQuiz.events({
     document.getElementById("idD").checked = false;
     document.getElementById("idE").checked = false;
     Loading.remove();
+    console.log("questionIndex: " + questionIndex);
+    console.log(
+      "que: " +
+        Que.find({
+          header: FlowRouter.getParam("header"),
+        }).count()
+    );
+
+    if (
+      Que.find({
+        header: FlowRouter.getParam("header"),
+      }).count() ==
+      questionIndex + 1
+    ) {
+      // "Next Question" butonunu seçin
+      const nextQuestionButton = document.getElementById("nextQuesitonButton");
+
+      // Butonun metnini "sınavı bitir" olarak değiştirin
+      nextQuestionButton.textContent = "Finish the Exam";
+    }
     if (
       questionIndex >=
       Que.find({
@@ -126,7 +181,7 @@ Template.pagesQuiz.events({
           }
         }
       );
-
+      nextQuestionButton.textContent = "Next Question";
       //flowrouter ile sınav sonucuna bakmalı
       FlowRouter.go("public.res");
     } else {
